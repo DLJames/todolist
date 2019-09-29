@@ -1,2 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+Sitemap: https://james.com/sitemap.xml
+disallow: /mytest1
+disallow: /mytest2
+disallow: /mytest3
