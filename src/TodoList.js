@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './style.css';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 
 class TodoList extends Component{
   state = {
@@ -16,6 +17,16 @@ class TodoList extends Component{
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/todolist').then((res) => {
+      this.setState(() => ({
+        todos: [...res.data.list]
+      }));
+    }).catch((err) => {
+      console.log('err==', err);
+    });
   }
 
   render() {
