@@ -13,3 +13,8 @@ export const getDeleteItemAction = (value) => ({
     type: Type.DEL_ITEM,
     value
 });
+
+export const getSetList = (value) => ({
+    type: Type.SET_LIST,
+    value
+});

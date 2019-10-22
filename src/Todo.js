@@ -3,6 +3,7 @@ import 'antd/dist/antd.css'
 import store from './store';
 import * as Action from './store/actionCreators'; 
 import TodoUI from './TodoUI';
+import axios from 'axios';
 
 class Todo extends Component {
 
@@ -15,6 +16,14 @@ class Todo extends Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.handleDelItem = this.handleDelItem.bind(this);
     store.subscribe(this.handleDataChange);
+  }
+
+  componentDidMount() {
+    axios.get('/api/todolist').then((res) => {
+      const data = res.data;
+      const action = Action.getSetList(data.list);
+      store.dispatch(action);
+    });
   }
 
   render() {

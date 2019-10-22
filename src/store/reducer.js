@@ -20,5 +20,8 @@ export default (state = defaultState, action) => {
             return item !== value;
         });
     }
+    if(type === Type.SET_LIST) {
+        newStore.list = [...value];
+    }
     return newStore;
 }
