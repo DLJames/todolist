@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css'
-import store from './store';
-import * as Action from './store/actionCreators'; 
+import store from './store2';
+import * as Action from './store2/actionCreators'; 
 import TodoUI from './TodoUI';
 
 class Todo extends Component {
@@ -18,8 +18,7 @@ class Todo extends Component {
   }
 
   componentDidMount() {
-    const action = Action.getTodoList();
-    store.dispatch(action);
+    this.getTodoList();
   }
 
   render() {
@@ -34,18 +33,23 @@ class Todo extends Component {
     );
   }
 
+  getTodoList() {
+    const action = Action.getTodoList();
+    store.dispatch(action);
+  }
+
   handleInputChange(e) {
-    const action = Action.getInputChangeAction(e.target.value);
+    const action = Action.changeInput(e.target.value);
     store.dispatch(action);
   }
 
   handleAdd() {
-    const action = Action.getAddItemAction();
+    const action = Action.handleAdd();
     store.dispatch(action);
   }
 
   handleDelItem(val) {
-    const action = Action.getDeleteItemAction(val);
+    const action = Action.handleDelItem(val);
     store.dispatch(action);
   }
 
